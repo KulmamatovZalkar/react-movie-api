@@ -17,7 +17,7 @@ export default class TVMovieToggle extends Component {
             <div className="toggle-container">
                 <p>Movies</p>
                 <div className="toggle" onClick={() => this.sliderToggle()}>
-                    <div className={"toggle-button " + (toogle ? "movie" : "tv")}></div>
+                    <div className={"toggle-button " + (toggle ? "movie" : "tv")}></div>
                 </div>
                 <p>TV</p>
             </div>

@@ -1,4 +1,4 @@
-import TVMovieToggle from "./TVmovieToggle";
+import TVMovieToggle from "./TVMovieToggle";
 import Search from "./Search";
 
 const Navbar = (props) => {

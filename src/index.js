@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 
+import Navbar from "./components/header/Navbar";
+import MovieBox from "./components/movieList/MovieBox";
+import MovieMain from "./components/movieList/MovieMain";
+import GenresBar from "./components/header/GenresBar";
+
 const api_key = "3cc05ada7e70628b8d1bf36e4d1f6fd7";
 const api_url = "https://api.themoviedb.org";
 const tmdb_url = "https://www.themoviedb.org/movie";
@@ -43,7 +48,7 @@ class App extends Component {
         results.forEach((movie) => {
           if (movie.poster_path === null) return;
           if (movie.vote_average) {
-            const movieBox = "";
+            const movieBox = <MovieBox movie={movie} key={movie.id} />;
             movie.poster_link = `${image_url}${movie.poster_path}`;
             movie.url = `${tmdb_url}${movie.id}`;
             movieList.push(movieBox);
@@ -54,11 +59,53 @@ class App extends Component {
       });
   }
 
+  search(searchValue) {
+    fetch(
+      `${api_url}/3/search/movie/?api_key=${api_key}&language=${language}&query=${searchValue}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const movieList = [];
+        const results = data.results;
+        results.forEach((movie) => {
+          if (movie.poster_path == null) return;
+          if (movie.vote_average) {
+            const movieBox = <MovieBox movie={movie} key={movie.id} />;
+            movie.poster_link = `${image_url}${movie.poster_path}`;
+            movie.url = `${tmdb_url}${movie.id}`;
+            movieList.push(movieBox);
+          }
+        });
+        this.setState({ movieData: movieList });
+      });
+  }
+
+  updateDiscover = (type, genre = "") => {
+    this.discover(type, genre[1]);
+  };
+
+  updateSearch = (event) => {
+    if (event.length === 0) return;
+    this.search(event);
+  };
+
   render() {
     return (
-    <div>
-        
-    </div>
+      <div className="App">
+        {this.state.movieData ? (
+          <div>
+            <Navbar
+              updateDiscover={this.updateDiscover}
+              updateSearch={this.updateSearch}
+            />
+            <GenresBar genres={genres} updateDiscover={this.updateDiscover} />
+            
+            <MovieMain movies={this.state.movieData} />
+          </div>
+        ) : (
+          <div>jfdsaj</div>
+        )}
+      </div>
     );
   }
 }
