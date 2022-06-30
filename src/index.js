@@ -6,6 +6,7 @@ import Navbar from "./components/header/Navbar";
 import MovieBox from "./components/movieList/MovieBox";
 import MovieMain from "./components/movieList/MovieMain";
 import GenresBar from "./components/header/GenresBar";
+import FeaturedMovie from "./components/movieList/FeaturedMovie";
 
 const api_key = "3cc05ada7e70628b8d1bf36e4d1f6fd7";
 const api_url = "https://api.themoviedb.org";
@@ -46,6 +47,8 @@ class App extends Component {
         const movieList = [];
         const results = data.results;
         results.forEach((movie) => {
+          // console.log(movie.poster_path)
+          // console.log(movie.vote_average)
           if (movie.poster_path === null) return;
           if (movie.vote_average) {
             const movieBox = <MovieBox movie={movie} key={movie.id} />;
@@ -54,8 +57,13 @@ class App extends Component {
             movieList.push(movieBox);
           }
         });
-        this.setState({ movieData: movieList });
-        console.log(data);
+        fetch(
+          `${api_url}/3/${type}/${results[0].id}?api_key=${api_key}&append_to_response=credits,videos`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({ featuredMovieData: data, movieData: movieList });
+          });
       });
   }
 
@@ -90,6 +98,7 @@ class App extends Component {
   };
 
   render() {
+    // console.log(this.state.movieData)
     return (
       <div className="App">
         {this.state.movieData ? (
@@ -99,7 +108,7 @@ class App extends Component {
               updateSearch={this.updateSearch}
             />
             <GenresBar genres={genres} updateDiscover={this.updateDiscover} />
-            
+            <FeaturedMovie movie={this.state.featuredMovieData} />
             <MovieMain movies={this.state.movieData} />
           </div>
         ) : (

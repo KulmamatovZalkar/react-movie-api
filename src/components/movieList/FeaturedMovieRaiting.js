@@ -15,4 +15,15 @@ const FeaturedMovieRating = (props) => {
       stars.push(<i className="star fas fa-star" key={`star${i}`}></i>);
     }
   }
+
+  return (
+    <div className="featured_movie_rating">
+      <p className="stars">
+        {stars}
+        <span className="movie_average">{props.movie_average}</span>
+      </p>
+    </div>
+  );
 };
+
+export default FeaturedMovieRating;

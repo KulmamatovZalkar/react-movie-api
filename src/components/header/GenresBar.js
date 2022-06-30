@@ -2,10 +2,10 @@ import GenreButton from "./GenreButton"
 
 const GenresBar = (props) => {
     const genresArr = []
-    for(let i=0; i < Object.keys.apply(props.genres).lenght; i++){
+    for(let i=0; i < Object.keys(props.genres).length; i++){
         genresArr.push(
             <GenreButton genre={Object.entries(props.genres)[i]} 
-                key={`Button+{i}`}
+                key={`Button+${i}`}
             updateDiscover={props.updateDiscover}/>
         )
     }
