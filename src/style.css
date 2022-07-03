@@ -1,29 +1,451 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+     v2.0 | 20110126
+     License: none (public domain)
+  */
+  
+  html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
+  a, img, b, u, i, ol, ul, li, form, article, aside,
+  footer, header, menu, nav, output, section, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      font-family: Helvetica, Arial, sans-serif;
+      background: #102E37;
+      color: #fff;
+  }
+  body {
+      margin-top: 16vh;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+      display: block;
+  }
+  ol, ul {
+      list-style: none;
+  }
+  
+  p {
+      font-size: 2vh;
+  }
+  
+  @media screen and (max-width: 600px) {
+      body {
+          margin-top: 10vh;
+      }
+  }
+  
+  .featured_movie_container {
+      margin: 4vh auto 6vh auto;
+      width: 75%;
+      height: 82vh;
+      display: flex;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .featured_movie_container {
+          width: 95%;
+          height: 110vh;
+          flex-direction: column;
+          text-align: center;
+      }
+  }
+  
+  .featured_movie_info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .featured_movie_info .movie_title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 6vh;
+  }
+  
+  .featured_movie_info .movie_tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 3.5vh;
+      color: goldenrod;
+      margin: 0.5vh 0;
+  }
+  
+  .featured_movie_info .movie_overview {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 2vh;
+      margin: 0.5vh 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .featured_movie_info {
+          padding-right: 0;
+      }
+  
+      .featured_movie_info .movie_title {
+          font-size: 4vh;
+          margin-top: 1vh;
+      }
+  
+      .featured_movie_info .movie_tagline {
+          font-size: 2.5vh;
+      }
+  
+      .featured_movie_info .movie_overview {
+          font-size: 1.75vh;
+      }
+  
+      .featured_movie_info .rating {
+          font-size: 2.75vh;
+      }
+  
+      .featured_movie_info .rating .star_icon {
+          font-size: 2.75vh;
+      }
+  
+      .featured_movie_info .rating .star_icon_empty {
+          font-size: 2.75vh;
+      }
+  }
+  
+  .featured_movie_poster { 
+      flex: 1;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  .featured_movie_rating {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 3vh;
+      margin-bottom: 3vh;
+  }
+  
+  .featured_movie_rating .movie_average {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 2.5vh;
+      display: inline-block;
+      padding-left: 1vh;
+  }
+  
+  .featured_movie_rating .stars {
+      color: goldenrod;
+      font-size: 2.75vh;
+      padding-top: 1vh;
+  }
+  
+  .featured_movie_rating .stars .star {
+      color: goldenrod;
+      padding: 0.15vh;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .featured_movie_rating {
+          font-size: 2.75vh;
+      }
+  
+      .featured_movie_rating .stars {
+          font-size: 2.75vh;
+      }
+  }
+  
+  .footer {
+      margin-top: 2vh;
+      text-align: center;
+  }
+  
+  .footer-icons {
+      display: flex;
+      justify-content: center;
+      font-size: 3vh;
+  }
+  
+  .footer p {
+      display: block;
+      margin-bottom: 2vh;
+  }
+  
+  .footer a {
+      margin: 1vh;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .footer {
+          height: 20vh;
+          margin-top: 6vh;
+      }
+  }
+  
+  .tmdb-logo {
+      height: 6vh;
+  }
+  
+  .movie_box {
+      width: 12%;
+      text-align: center;
+      padding: 1vh;
+  }
+  
+  .movie_box .movie_poster {
+      width: 100%;
+  }
+  
+  .movie_box .movie_poster:hover {
+      opacity: 0.8;
+  }
+  
+  .movie_box .movie_vote_average .star_icon {
+      font-size: 1.75vh;
+      color: goldenrod;
+      padding-right: 2px;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .movie_box {
+          width: 50%;
+          padding: 0.5vh;
+      }
+  }
+  
+  .movie_box_container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1vh;
+      justify-content: center;
+  }
+  
+  .movie_main {
+      border-top: 1px solid white;
+  }
+  
+  .movie_main h2 {
+      margin-top: 2vh;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4vh;
+      font-weight: 600;
+      text-align: center;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .movie_main h2 {
+          font-size: 3vh;
+      }
+  }
+  
+  .genre_button {
+      width: 5%;
+      line-height: 4vh;
+      border-right: 1px solid #FFF;
+      border-bottom: 1px solid #FFF;
+      display: inline-block;
+      background-color: #0A1E24;
+      text-align: center;
+      font-size: 2vh;
+  }
+  
+  .genre_button:hover {
+      background-color: #FFF;
+      color: #0A1E24;
+  }
+  
+  .genre_button:first-child {
+      border-left: 1px solid #FFF;
+  }
+  
+  .genres_bar {
+      height: 4vh;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 7vh;
+      width: 100%;
+      z-index: 10;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .genres_bar {
+          display: none;
+      }
+  }
+  
+  .navbar {
+      background: #0A1E24;
+      height: 7vh;
+      text-align: center;
+      border-bottom: 1px solid #fff;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+  }
+  
+  .search-field-container {
+    flex: 1;
+    background: #0A1E24;
+    text-align: right;
+    padding-right: 2.5%;
+  }
+  
+  .search-field-container .search-field {
+      background: #0A1E24;
+      color: #fff;
+      border-radius: 4vh;
+      height: 5vh;
+      width: 12vw;
+      padding-left: 1vw;
+      outline: none;
+      border: 0.25vh solid #fff;
+      font-size: 2vh;
+  }
+    
+  .search-field-container .search-field::placeholder {
+      color: #ddd;
+      font-size: 2vh;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .search-field-container .search-field {
+        width: 20vh;
+    }
+  }
+  
+  .toggle-container {
+      padding-left: 1vh;
+      background: #0A1E24;
+      flex: 1;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      margin-left: 2.5%;
+  }
+  
+  .toggle-container p {
+      font-size: 2vh;
+      background: #0A1E24;
+  }
+  
+  .toggle-container .toggle {
+      display: inline-block;
+      background: #0A1E24;
+      border-radius: 4vh;
+      height: 4.5vh;
+      width: 8%;
+      border: 0.25vh solid #fff;
+      margin: 0 1vh;
+  }
+  
+  .toggle-container .toggle .toggle-button {
+      background: #fff;
+      height: 3.75vh;
+      width: 3.75vh;
+      border-radius: 100%;
+      margin-top: 0.1vh;
+      margin-left: 0.2vh;
+  }
+  
+  .toggle-container .toggle .movie {
+      animation: movie-to-tv 1s;
+      animation-fill-mode: forwards;
+      -webkit-animation: movie-to-tv 1s;
+      -moz-animation: movie-to-tv 1s;
+      -o-animation: movie-to-tv 1s;
+      -ms-animation: movie-to-tv 1s;
+      -webkit-animation-fill-mode: forwards;
+  }
+  
+  @keyframes movie-to-tv {
+      from {margin-left: 0.2vh}
+      to {margin-left: 3.7vh}
+  }
+  
+  .toggle-container .toggle .tv {
+      animation: tv-to-movie 1s;
+      animation-fill-mode: forwards;
+      -webkit-animation: tv-to-movie 1s;
+      -moz-animation: tv-to-movie 1s;
+      -o-animation: tv-to-movie 1s;
+      -ms-animation: tv-to-movie 1s;
+      -webkit-animation-fill-mode: forwards;
+  }
+  
+  @keyframes tv-to-movie {
+      from {margin-left: 3.7vh}
+      to {margin-left: 0.2vh}
+  }
+  
+  @media screen and (max-width: 600px) {
+      .toggle-container {
+          padding-left: 1vh;
+          background: #0A1E24;
+          flex: 1;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          margin-left: 2.5%;
+      }
+      
+      .toggle-container p {
+          font-size: 2vh;
+          background: #0A1E24;
+      }
+      
+      .toggle-container .toggle {
+          display: inline-block;
+          background: #0A1E24;
+          border-radius: 4vh;
+          height: 4.5vh;
+          width: 7.5vh;
+          border: 0.25vh solid #fff;
+          margin: 0 1vh;
+      }
+      
+      .toggle-container .toggle .toggle-button {
+          background: #fff;
+          height: 3.75vh;
+          width: 3.75vh;
+          border-radius: 100%;
+          margin-top: 0.1vh;
+          margin-left: 0.2vh;
+      }
+  
+      @keyframes movie-to-tv {
+          from {margin-left: 0.2vh}
+          to {margin-left: 3.7vh}
+      }
+      
+      @keyframes tv-to-movie {
+          from {margin-left: 3.7vh}
+          to {margin-left: 0.2vh}
+      }
+  }
