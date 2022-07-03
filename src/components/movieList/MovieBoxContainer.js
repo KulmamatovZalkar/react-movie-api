@@ -1,5 +1,7 @@
-const MovieBoxContainer = (props) => {
-  <div className="movie_box_container">{props.movies}</div>;
-};
+const MovieBoxContainer = (props) => (
+	<div className="movie_box_container">
+		{props.movies}
+	</div>
+)
 
 export default MovieBoxContainer;
